@@ -159,55 +159,56 @@ Postgres → Analytics Layer → ML Gateway → FastAPI → Prediction → Stora
   "attendanceRate": 0.62,
   "avgGrade": 58.4
 }
-⚙️ Tech Stack
-Backend
-Node.js
-Express.js
-Prisma ORM
-PostgreSQL
-Redis
-BullMQ
-Frontend (Web)
-Next.js (App Router)
-TypeScript
-Tailwind CSS
-Zustand
-React Query
-Mobile
-Expo React Native
-TypeScript
-ML Service
-FastAPI
-Python
-Scikit-learn (Random Forest)
-Joblib
-🔐 Security
+
+### ⚙️ Tech Stack
+- Backend
+- Node.js
+- Express.js
+- Prisma ORM
+- PostgreSQL
+- Redis
+- BullMQ
+- Frontend (Web)
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- Zustand
+- React Query
+- Mobile
+- Expo React Native
+- TypeScript
+- ML Service
+- FastAPI
+- Python
+- Scikit-learn (Random Forest)
+- Joblib
+### 🔐 Security
 JWT Authentication
 Role-Based Access Control (RBAC)
 Multi-tenant isolation (schoolId scoping)
 Rate limiting middleware
 Input validation per module
-⚡ Performance Strategy
+###⚡ Performance Strategy
 Redis caching for analytics & predictions
 Background ML inference jobs
 Lazy dashboard aggregation
 Indexed PostgreSQL queries
 Separation of read vs compute operations
-📦 Background Jobs (BullMQ)
+###📦 Background Jobs (BullMQ)
 Jobs
 ML prediction processing
 Email notifications
 Analytics batch computation
-📁 File Uploads
+### 📁 File Uploads
 Supported
 Assignment attachments
 Student submissions
 Storage Paths
 /uploads/assignments
 /uploads/submissions
-📊 API Base URL
+### 📊 API Base URL
 /api/v1
-🧪 Example Endpoints
+### 🧪 Example Endpoints
 Auth
 POST /api/v1/auth/login
 Students
@@ -221,7 +222,7 @@ Predictions
 GET /api/v1/predictions/student/:id
 Dashboard
 GET /api/v1/dashboard/overview
-🚀 Deployment
+### 🚀 Deployment
 Environment Variables
 DATABASE_URL=
 JWT_SECRET=
@@ -234,7 +235,7 @@ ML Service → FastAPI container
 Database → PostgreSQL
 Cache → Redis
 Queue → BullMQ worker
-🧠 System Maturity
+### 🧠 System Maturity
 Layer	Status
 Auth System	✅
 School Core	✅
@@ -243,20 +244,20 @@ Messaging	✅
 Analytics	✅
 AI/ML	✅
 Production Layer	✅
-📈 Future Enhancements
+### 📈 Future Enhancements
 Real-time WebSockets (live attendance)
 Mobile push notifications
 AI auto-grading
 Smart timetable optimization
 Parent portal expansion
 Offline mobile LMS mode
-👨‍💻 Project Philosophy
+### 👨‍💻 Project Philosophy
 Feature-first architecture
 Domain-driven modules
 API as single source of truth
 ML as isolated microservice
 Scalable multi-tenant SaaS design
-📌 Summary
+### 📌 Summary
 
 A production-ready, AI-powered, multi-tenant School Management SaaS platform combining:
 
