@@ -18,9 +18,13 @@ enum Role {
 model School {
   id        String   @id @default(cuid())
   name      String
+  address   String?
   createdAt DateTime @default(now())
 
   users     User[]
+  students  Student[]
+  teachers  Teacher[]
+  classes   Class[]
 }
 
 model User {
@@ -32,5 +36,177 @@ model User {
   schoolId  String?
   school    School?  @relation(fields: [schoolId], references: [id])
 
+  student   Student?
+  teacher   Teacher?
+
   createdAt DateTime @default(now())
+}
+
+model Student {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  schoolId  String
+
+  firstName String
+  lastName  String
+  grade     Int
+
+  user      User     @relation(fields: [userId], references: [id])
+  school    School   @relation(fields: [schoolId], references: [id])
+
+  enrollments Enrollment[]
+  attendance  Attendance[]
+}
+ 
+model Teacher {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  schoolId  String
+
+  firstName String
+  lastName  String
+  subject   String?
+
+  user      User     @relation(fields: [userId], references: [id])
+  school    School   @relation(fields: [schoolId], references: [id])
+
+  classes   Class[]
+}
+
+model Class {
+  id        String   @id @default(cuid())
+  name      String
+  grade     Int
+
+  schoolId  String
+  school    School   @relation(fields: [schoolId], references: [id])
+
+  teacherId String?
+  teacher   Teacher? @relation(fields: [teacherId], references: [id])
+
+  students  Enrollment[]
+  subjects  Subject[]
+}
+
+model Subject {
+  id        String  @id @default(cuid())
+  name      String
+
+  classId   String
+  class     Class   @relation(fields: [classId], references: [id])
+}
+
+model Enrollment {
+  id        String  @id @default(cuid())
+
+  studentId String
+  classId   String
+
+  student   Student @relation(fields: [studentId], references: [id])
+  class     Class   @relation(fields: [classId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+model Attendance {
+  id        String   @id @default(cuid())
+
+  studentId String
+  schoolId  String
+  classId   String
+
+  date      DateTime
+  status    String   // PRESENT | ABSENT | LATE
+
+  student   Student  @relation(fields: [studentId], references: [id])
+}
+
+model Assignment {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+
+  classId     String
+  schoolId    String
+
+  dueDate     DateTime
+
+  createdAt   DateTime @default(now())
+
+  class       Class    @relation(fields: [classId], references: [id])
+  submissions Submission[]
+}
+
+model Submission {
+  id           String   @id @default(cuid())
+
+  assignmentId String
+  studentId    String
+  schoolId     String
+
+  content      String?  // text submission (future: file URL)
+  submittedAt  DateTime @default(now())
+
+  grade        Int?
+  feedback     String?
+
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+  student      Student    @relation(fields: [studentId], references: [id])
+}
+
+model Grade {
+  id          String   @id @default(cuid())
+
+  studentId   String
+  classId     String
+  schoolId    String
+
+  value       Float
+  feedback    String?
+
+  createdAt   DateTime @default(now())
+
+  student     Student  @relation(fields: [studentId], references: [id])
+  class       Class    @relation(fields: [classId], references: [id])
+}
+
+
+model MessageThread {
+  id        String   @id @default(cuid())
+  schoolId  String
+
+  subject   String
+  createdAt DateTime @default(now())
+
+  messages  Message[]
+}
+ 
+model Message {
+  id        String   @id @default(cuid())
+
+  threadId  String
+  senderId  String
+
+  content   String
+  createdAt DateTime @default(now())
+
+  thread    MessageThread @relation(fields: [threadId], references: [id])
+}
+
+model StudentPrediction {
+  id          String   @id @default(cuid())
+
+  studentId   String
+  schoolId    String
+
+  riskLevel   Int
+  confidence  Float
+
+  attendanceRate Float
+  avgGrade       Float
+  submissionRate Float
+
+  createdAt   DateTime @default(now())
+
+  student     Student @relation(fields: [studentId], references: [id])
 }
