@@ -1,25 +1,33 @@
 # 📚 School SaaS Platform (LMS + AI Analytics)
 
-A multi-tenant, AI-powered School Management System supporting elementary (grades 1–8) and high school (grades 9–12) institutions.
+> A production-ready, AI-powered, multi-tenant School Management System supporting elementary (Grades 1–8) and high school (Grades 9–12) institutions.
+
+![Node.js](https://img.shields.io/badge/Node.js-20+-339933?logo=node.js\&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?logo=typescript\&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql\&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-ML-009688?logo=fastapi\&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
 ---
 
-## 🚀 Overview
+# 🚀 Overview
 
-This platform is a full-scale **School Management SaaS (LMS + AI Analytics)** designed for scalability, intelligence, and multi-school isolation.
+The **School SaaS Platform** is a scalable, AI-powered Learning Management System (LMS) designed for educational institutions. It combines modern web technologies with machine learning to provide intelligent academic management, analytics, and predictive insights.
 
-It integrates:
+The platform consists of:
 
-- 🌐 Web App (Next.js)
-- 📱 Mobile App (Expo React Native)
-- ⚙️ Backend API (Node.js + Express + Prisma)
-- 🤖 ML Service (FastAPI + Random Forest)
-- 🗄️ PostgreSQL + Redis + BullMQ
+* 🌐 **Web Application** — Next.js
+* 📱 **Mobile Application** — Expo React Native
+* ⚙️ **Backend API** — Node.js, Express, Prisma
+* 🤖 **Machine Learning Service** — FastAPI + Scikit-learn
+* 🗄️ **Database & Infrastructure** — PostgreSQL, Redis, BullMQ
 
 ---
 
-## 🏗️ Architecture Overview
+# 🏗️ System Architecture
 
+```text
                  ┌──────────────┐
                  │  Web (Next)  │
                  └──────┬───────┘
@@ -29,14 +37,14 @@ It integrates:
                  └──────┬───────┘
                         │
                 ┌───────▼────────┐
-                │  API Gateway    │
-                │ Node.js + API   │
+                │ API Gateway     │
+                │ Node.js/Express │
                 └───────┬────────┘
                         │
         ┌───────────────┼────────────────┐
         │               │                │
  ┌──────▼──────┐ ┌──────▼──────┐ ┌──────▼──────┐
- │ PostgreSQL   │ │ Redis Cache │ │ BullMQ Jobs │
+ │ PostgreSQL  │ │ Redis Cache │ │ BullMQ Jobs │
  └──────┬──────┘ └──────┬──────┘ └──────┬──────┘
         │               │                │
         └───────────────┼────────────────┘
@@ -45,112 +53,162 @@ It integrates:
                 │ ML Service      │
                 │ FastAPI + RF    │
                 └─────────────────┘
+```
 
 ---
 
-## 🧠 Core Features
+# ✨ Features
 
-### 🏫 Multi-School SaaS
-- Fully isolated multi-tenant architecture
-- School admin onboarding system
-- Role-Based Access Control (RBAC)
+## 🏫 Multi-Tenant SaaS
 
----
-
-### 👥 User System
-Roles:
-- Super Admin
-- School Admin
-- Teacher
-- Student
-- Parent
+* Fully isolated school tenants
+* School onboarding
+* Subscription-ready architecture
+* Role-Based Access Control (RBAC)
 
 ---
 
-### 🎓 Academic System
-- Student management
-- Teacher management
-- Classes & subjects
-- Student enrollment system
-- Attendance tracking
-- Assignments & submissions
-- Gradebook system
+## 👥 User Management
+
+Supported roles:
+
+* Super Admin
+* School Admin
+* Teacher
+* Student
+* Parent
 
 ---
 
-### 📊 Analytics & AI
-- Student performance tracking
-- Attendance trend analysis
-- Dropout/failure risk prediction
-- ML-powered insights via FastAPI
+## 🎓 Academic Management
+
+* Student Management
+* Teacher Management
+* Class Management
+* Subject Management
+* Enrollment System
+* Attendance Tracking
+* Assignment Management
+* Submission System
+* Gradebook
 
 ---
 
-### 💬 Communication
-- Thread-based messaging system
-- School announcements
-- Email notifications (event-driven)
+## 📊 Analytics & AI
+
+* Student performance analytics
+* Attendance trend analysis
+* Dropout prediction
+* Failure risk prediction
+* AI-powered recommendations
+* ML-based insights
 
 ---
 
-### ⚡ Production Systems
-- Redis caching
-- Background job processing (BullMQ)
-- File uploads (assignments & submissions)
-- Rate limiting
-- Centralized logging
+## 💬 Communication
+
+* Thread-based messaging
+* School announcements
+* Email notifications
+* Event-driven communication
 
 ---
 
-## 🏗️ Backend Architecture
+## ⚡ Production Features
 
-### Pattern
-
-Controller → Service → Repository
-
-
-### Module Structure
-
-src/modules/
-├── auth/
-├── schools/
-├── users/
-├── students/
-├── teachers/
-├── classes/
-├── enrollment/
-├── attendance/
-├── assignments/
-├── submissions/
-├── gradebook/
-├── messaging/
-├── analytics/
-├── dashboard/
-├── ml/
-├── predictions/
-
+* Redis caching
+* BullMQ background jobs
+* File uploads
+* Rate limiting
+* Centralized logging
+* Modular architecture
 
 ---
 
-## 🤖 ML System
+# 🏛 Backend Architecture
 
-### 🎯 Purpose
-- Predict student risk levels
-- Identify at-risk students
-- Support academic interventions
+## Architecture Pattern
 
-### 📊 Features Used
-- Attendance rate
-- Average grade
-- Submission rate
-- Late submission count
+```text
+Controller
+      │
+      ▼
+Service Layer
+      │
+      ▼
+Repository Layer
+      │
+      ▼
+Database
+```
 
-### 🔁 Flow
+---
 
-Postgres → Analytics Layer → ML Gateway → FastAPI → Prediction → Storage
+## Project Structure
 
+```text
+src/
+└── modules/
+    ├── auth/
+    ├── schools/
+    ├── users/
+    ├── students/
+    ├── teachers/
+    ├── classes/
+    ├── enrollment/
+    ├── attendance/
+    ├── assignments/
+    ├── submissions/
+    ├── gradebook/
+    ├── messaging/
+    ├── analytics/
+    ├── dashboard/
+    ├── ml/
+    └── predictions/
+```
 
-### 🧠 AI Output Example
+---
+
+# 🤖 Machine Learning
+
+## Purpose
+
+The ML service predicts students who may require academic intervention.
+
+### Prediction Features
+
+* Attendance rate
+* Average grade
+* Assignment submission rate
+* Late submission count
+
+---
+
+## ML Pipeline
+
+```text
+PostgreSQL
+      │
+      ▼
+Analytics Layer
+      │
+      ▼
+ML Gateway
+      │
+      ▼
+FastAPI
+      │
+      ▼
+Prediction
+      │
+      ▼
+Database Storage
+```
+
+---
+
+## Example Prediction
+
 ```json
 {
   "studentId": "abc123",
@@ -159,111 +217,190 @@ Postgres → Analytics Layer → ML Gateway → FastAPI → Prediction → Stora
   "attendanceRate": 0.62,
   "avgGrade": 58.4
 }
+```
 
 ---
-### ⚙️ Tech Stack
-- Backend
-- Node.js
-- Express.js
-- Prisma ORM
-- PostgreSQL
-- Redis
-- BullMQ
-- Frontend (Web)
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
-- Zustand
-- React Query
-- Mobile
-- Expo React Native
-- TypeScript
-- ML Service
-- FastAPI
-- Python
-- Scikit-learn (Random Forest)
-- Joblib
-### 🔐 Security
-JWT Authentication
-Role-Based Access Control (RBAC)
-Multi-tenant isolation (schoolId scoping)
-Rate limiting middleware
-Input validation per module
-###⚡ Performance Strategy
-Redis caching for analytics & predictions
-Background ML inference jobs
-Lazy dashboard aggregation
-Indexed PostgreSQL queries
-Separation of read vs compute operations
-###📦 Background Jobs (BullMQ)
-Jobs
-ML prediction processing
-Email notifications
-Analytics batch computation
-### 📁 File Uploads
-Supported
-Assignment attachments
-Student submissions
-Storage Paths
-/uploads/assignments
-/uploads/submissions
-### 📊 API Base URL
+
+# 🛠 Tech Stack
+
+| Layer                | Technologies                            |
+| -------------------- | --------------------------------------- |
+| **Backend**          | Node.js, Express.js, Prisma ORM         |
+| **Database**         | PostgreSQL                              |
+| **Caching**          | Redis                                   |
+| **Queue**            | BullMQ                                  |
+| **Frontend**         | Next.js (App Router), React, TypeScript |
+| **Styling**          | Tailwind CSS                            |
+| **State Management** | Zustand                                 |
+| **Data Fetching**    | React Query                             |
+| **Mobile**           | Expo React Native                       |
+| **Machine Learning** | FastAPI, Python, Scikit-learn, Joblib   |
+
+---
+
+# 🔐 Security
+
+* JWT Authentication
+* Role-Based Access Control (RBAC)
+* Multi-tenant isolation (`schoolId`)
+* Rate limiting
+* Input validation
+* Secure password hashing
+* Environment-based configuration
+
+---
+
+# ⚡ Performance Strategy
+
+* Redis caching
+* Background ML inference
+* Lazy dashboard aggregation
+* Optimized PostgreSQL indexes
+* Read/compute separation
+* Queue-based processing
+
+---
+
+# 📦 Background Jobs
+
+Handled with **BullMQ**
+
+* ML prediction processing
+* Email notifications
+* Analytics batch computation
+
+---
+
+# 📁 File Uploads
+
+Supported uploads:
+
+```text
+/uploads/
+├── assignments/
+└── submissions/
+```
+
+---
+
+# 🌐 API
+
+## Base URL
+
+```http
 /api/v1
-### 🧪 Example Endpoints
-Auth
+```
+
+### Authentication
+
+```http
 POST /api/v1/auth/login
-Students
-GET /api/v1/students
+```
+
+### Students
+
+```http
+GET  /api/v1/students
 POST /api/v1/students
-Attendance
+```
+
+### Attendance
+
+```http
 POST /api/v1/attendance/mark
-Assignments
+```
+
+### Assignments
+
+```http
 POST /api/v1/assignments
-Predictions
+```
+
+### Predictions
+
+```http
 GET /api/v1/predictions/student/:id
-Dashboard
+```
+
+### Dashboard
+
+```http
 GET /api/v1/dashboard/overview
-### 🚀 Deployment
-Environment Variables
+```
+
+---
+
+# 🚀 Deployment
+
+## Environment Variables
+
+```env
 DATABASE_URL=
 JWT_SECRET=
 REDIS_HOST=
 ML_SERVICE_URL=
 SMTP_HOST=
-Services
-API → Node.js server
-ML Service → FastAPI container
-Database → PostgreSQL
-Cache → Redis
-Queue → BullMQ worker
-### 🧠 System Maturity
-Layer	Status
-Auth System	✅
-School Core	✅
-LMS Features	✅
-Messaging	✅
-Analytics	✅
-AI/ML	✅
-Production Layer	✅
-### 📈 Future Enhancements
-Real-time WebSockets (live attendance)
-Mobile push notifications
-AI auto-grading
-Smart timetable optimization
-Parent portal expansion
-Offline mobile LMS mode
-### 👨‍💻 Project Philosophy
-Feature-first architecture
-Domain-driven modules
-API as single source of truth
-ML as isolated microservice
-Scalable multi-tenant SaaS design
-### 📌 Summary
+```
 
-A production-ready, AI-powered, multi-tenant School Management SaaS platform combining:
+---
 
-LMS functionality
-Real-time analytics
-Machine learning predictions
-Scalable backend architecture
-Multi-platform support (Web + Mobile)
+## Services
+
+| Service    | Technology        |
+| ---------- | ----------------- |
+| API        | Node.js + Express |
+| ML Service | FastAPI           |
+| Database   | PostgreSQL        |
+| Cache      | Redis             |
+| Queue      | BullMQ Worker     |
+
+---
+
+# 📈 Project Status
+
+| Module                    | Status |
+| ------------------------- | ------ |
+| Authentication            | ✅      |
+| School Management         | ✅      |
+| LMS Features              | ✅      |
+| Messaging                 | ✅      |
+| Analytics                 | ✅      |
+| AI & Machine Learning     | ✅      |
+| Production Infrastructure | ✅      |
+
+---
+
+# 🔮 Future Enhancements
+
+* 🔄 Real-time attendance (WebSockets)
+* 📲 Push notifications
+* 🤖 AI-powered auto grading
+* 📅 Smart timetable optimization
+* 👨‍👩‍👧 Parent portal enhancements
+* 📡 Offline mobile support
+
+---
+
+# 🏗 Project Philosophy
+
+* Feature-first architecture
+* Domain-driven design
+* Modular backend
+* API-first development
+* AI as an isolated microservice
+* Scalable multi-tenant SaaS architecture
+
+---
+
+# 📌 Summary
+
+The **School SaaS Platform** is a modern, enterprise-grade educational management system that combines:
+
+* 📚 Complete LMS functionality
+* 🤖 AI-powered predictive analytics
+* 📊 Real-time dashboards
+* 🏫 Multi-tenant architecture
+* 🌐 Web & Mobile applications
+* ⚡ Scalable backend infrastructure
+
+Built to support educational institutions with intelligent automation, data-driven decision-making, and a scalable cloud-native architecture.
